@@ -8,9 +8,9 @@ from tensorflow.keras.optimizers import Adam
 import os
 
 # Set up directories (modify with your paths)
-train_dir = 'path_to_train_data'  # Path to your training data
-val_dir = 'path_to_validation_data'  # Path to your validation data
-test_dir = 'path_to_test_data'  # Path to your test data
+train_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Test'  # Path to training data
+val_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Validation'  # Path to validation data
+test_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Test'  # Path to test data
 
 # Image data preprocessing
 train_datagen = ImageDataGenerator(
