@@ -49,8 +49,8 @@ To run this project, you'll need Python (>= 3.6) and several Python libraries, w
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/your-username/tb-detection.git
-cd tb-detection
+git clone https://github.com/edmondweb/Tuberculosis-Detection.git
+cd Tuberculosis-Detection
 ```
 
 2. **Set up a virtual environment (optional but recommended):**

@@ -1,0 +1,57 @@
+Model Summary:
+
+Architecture: ResNet50 with global average pooling and two dense layers (512 units and 1 unit, respectively).
+
+Total Parameters: 24,637,313 (approximately 94 MB).
+
+Trainable Parameters: 16,027,649 (approximately 61 MB).
+
+Non-Trainable Parameters: 8,609,664 (approximately 33 MB).
+
+Training Progress:
+
+Epoch 1: Accuracy = 83.27%, Loss = 0.4782
+
+Epoch 2: Accuracy = 100%, Loss = 0.2088
+
+Epoch 3: Accuracy = 83.58%, Loss = 0.3984
+
+Epoch 4: Accuracy = 81.25%, Loss = 0.2729
+
+Epoch 5: Accuracy = 85.37%, Loss = 0.3380
+
+Epoch 6: Accuracy = 93.75%, Loss = 0.1575
+
+Epoch 7: Accuracy = 88.70%, Loss = 0.2894
+
+Epoch 8: Accuracy = 93.75%, Loss = 0.1580
+
+Final Evaluation:
+
+Test Accuracy: 93.18%
+
+Test Loss: 0.21
+
+Warnings:
+
+There was an issue with the data during Epoch 2, where the dataset ran out of data, leading to an interruption.
+
+There's a warning about saving the model in the HDF5 format, which is considered legacy. It's recommended to use the newer Keras format (e.g., .keras).
+
+Observations:
+
+Accuracy Fluctuations: The model experienced accuracy drops between Epochs 6 and 8 (from 93.75% down to 88.70%), which could suggest overfitting or a need for adjustments in the training process (e.g., more data augmentation, adjustments in learning rate, or early stopping).
+
+Val Loss Spikes: The validation loss spikes dramatically (e.g., 31.5809 and 28.3906 in Epochs 3 and 4), indicating potential overfitting or instability in the model's performance on validation data.
+
+Model Stability: After a few epochs, the model seems to stabilize with a high test accuracy, but there might still be room for improvement regarding generalization.
+
+Recommendations:
+
+Data Augmentation: If overfitting is suspected, adding data augmentation techniques can help.
+
+Model Regularization: Implement dropout or other regularization techniques to stabilize training.
+
+Early Stopping: To prevent overfitting and halt training when validation loss starts increasing, consider adding early stopping.
+
+Model Saving: Save the model in the .keras format rather than HDF5 to ensure compatibility with the latest TensorFlow/Keras versions.

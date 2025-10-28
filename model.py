@@ -5,12 +5,16 @@ from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping
 import os
 
 # Set up directories (modify with your paths)
 train_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Test'  # Path to training data
 val_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Validation'  # Path to validation data
 test_dir = 'C:/Users/user/Desktop/Projects/Final project/Tuberculosis Detection/dataset/Test'  # Path to test data
+
+early_stopping = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
+
 
 # Image data preprocessing
 train_datagen = ImageDataGenerator(
@@ -32,7 +36,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)  # No augmentation for test da
 train_generator = train_datagen.flow_from_directory(
     train_dir,
     target_size=(512, 512),  # Resize images to 512x512
-    batch_size=32,
+    batch_size=16,
     class_mode='binary',  # Binary classification (TB vs Normal)
     shuffle=True
 )
@@ -40,7 +44,7 @@ train_generator = train_datagen.flow_from_directory(
 val_generator = val_datagen.flow_from_directory(
     val_dir,
     target_size=(512, 512),
-    batch_size=32,
+    batch_size=16,
     class_mode='binary',
     shuffle=False  # No shuffling for validation data
 )
@@ -48,7 +52,7 @@ val_generator = val_datagen.flow_from_directory(
 test_generator = test_datagen.flow_from_directory(
     test_dir,
     target_size=(512, 512),
-    batch_size=32,
+    batch_size=16,
     class_mode='binary',
     shuffle=False  # No shuffling for test data
 )
@@ -57,7 +61,11 @@ test_generator = test_datagen.flow_from_directory(
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(512, 512, 3))
 
 # Freeze the layers of the base model
-base_model.trainable = False
+base_model.trainable = True  # Set to True to fine-tune the model
+
+# Freeze the first 10 layers of the base model
+for layer in base_model.layers[:140]:
+    layer.trainable = False
 
 # Build a custom model on top of the pre-trained base
 model = Sequential([
@@ -79,7 +87,8 @@ history = model.fit(
     epochs=10,  # You can increase this based on your data
     validation_data=val_generator,
     steps_per_epoch=train_generator.samples // train_generator.batch_size,
-    validation_steps=val_generator.samples // val_generator.batch_size
+    validation_steps=val_generator.samples // val_generator.batch_size,
+    callbacks=[early_stopping]
 )
 
 # Save the model after training
@@ -100,3 +109,4 @@ predictions_binary = (predictions > 0.5).astype("int32")
 # Print some example predictions
 for i in range(5):
     print(f"Prediction: {predictions_binary[i]}, True label: {test_generator.labels[i]}")
+ 
