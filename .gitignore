@@ -5,3 +5,4 @@ scripts
 temp
 .vscode
 Tuberculosis.metadata.xlsx
+.env
