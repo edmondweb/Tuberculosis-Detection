@@ -12,7 +12,7 @@ from dotenv import load_dotenv  # Import dotenv
 load_dotenv()
 
 # Access the Hugging Face API key from the environment
-HF_API_KEY = os.getenv('HF_API_KEY')  # Fetch the API key securely from .env
+HF_API_KEY = os.getenv('HF_API_KEY')
 HF_API_URL = "https://huggingface.co/google/medgemma-4b-it"  # Update with your model's URL
 
 # Function to interact with Hugging Face API
@@ -85,5 +85,5 @@ if uploaded_file is not None:
     st.subheader("Detailed Report:")
     st.write(report)
 
-    # Optionally: You can implement a mechanism to store the image and use it for further training.
+    # Save the image for further use.
     st.write("The image has been saved for further use.")
