@@ -13,7 +13,7 @@ load_dotenv()
 
 # Access the Hugging Face API key from the environment
 HF_API_KEY = os.getenv('HF_API_KEY')  # Fetch the API key securely from .env
-HF_API_URL = "https://api-inference.huggingface.co/models/your_model_name"  # Update with your model's URL
+HF_API_URL = "https://huggingface.co/google/medgemma-4b-it"  # Update with your model's URL
 
 # Function to interact with Hugging Face API
 def generate_report(image_path):
@@ -29,6 +29,10 @@ def generate_report(image_path):
 
 # Function to preprocess the uploaded image for prediction
 def preprocess_image(img):
+    # Convert grayscale to RGB by duplicating the grayscale channel to 3 channels
+    if img.mode != 'RGB':
+        img = img.convert('RGB')  # Convert to RGB (3 channels)
+        
     img = img.resize((512, 512))  # Ensure the image size is 512x512
     img_array = image.img_to_array(img)  # Convert image to array
     img_array = img_array / 255.0  # Normalize the image
