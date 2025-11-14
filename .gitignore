@@ -6,3 +6,4 @@ temp
 .vscode
 Tuberculosis.metadata.xlsx
 .env
+tb_detection_model.h5
