@@ -33,10 +33,10 @@ tb-detection/
 │   └── test/
 │       ├── TB/
 │       └── Normal/
-├── tb_detection_model.h5         # Saved model after training
-├── tb_detection_model.ipynb      # Jupyter notebook for training the model
+├── model.py               # python code for training the model
+├── tb_detection_model.h5  # Saved model after training
 ├── README.md              # Project overview and instructions
-└── requirements.txt        # List of required Python packages
+└── requirements.txt       # List of required Python packages
 ```
 
 Installation
@@ -128,7 +128,7 @@ Please ensure the data is organized as shown above for compatibility with the sc
 To train the model, run the following command:
 
 ```bash
-python tb_detection_model.ipynb
+python model.py
 ```
 
 The script will:
