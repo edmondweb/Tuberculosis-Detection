@@ -18,6 +18,11 @@ This project uses deep learning techniques to detect **Tuberculosis (TB)** from 
 
 * **Model Saving**: The trained model can be saved and used for predictions on new data.
 
+Deployment Link for Demo:
+-------------------------
+
+You can access the **live demo** of the TB detection model using the following [link](https://deepmed-detection.streamlit.app/)
+
 Project Structure
 -----------------
 
@@ -87,6 +92,8 @@ keras>=2.4.3
 numpy>=1.19.0
 pillow>=7.1.2
 scikit-learn>=0.24.0
+python-dotenv==0.21.0
+huggingface_hub==0.14.1
 ```
 
 Dataset
